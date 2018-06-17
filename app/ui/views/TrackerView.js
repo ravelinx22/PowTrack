@@ -1,7 +1,7 @@
 import React, { Component  } from 'react';
 import {StyleSheet,Text,TextInput,View,Button,ActivityIndicator,Image,} from 'react-native';
 
-export default class TrackerView extends Component<{}> {
+export default class TrackerView extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
