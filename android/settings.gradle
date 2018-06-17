@@ -1,0 +1,3 @@
+rootProject.name = 'PowTrack'
+
+include ':app'
