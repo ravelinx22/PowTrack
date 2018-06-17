@@ -9,6 +9,6 @@ import { createMaterialTopTabNavigator } from "react-navigation";
 import TrackerView from "../views/TrackerView";
 
 export default createMaterialTopTabNavigator({
-	Home: props => <TrackerView {...props}/>,
-	Settings: props => <TrackerView {...props} />,
+	"Big 3": props => <TrackerView {...props}/>,
+	"Paused Big 3": props => <TrackerView {...props} />,
 });

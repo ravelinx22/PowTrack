@@ -1,5 +1,6 @@
 import React, { Component  } from 'react';
-import {StyleSheet,Text,TextInput,View,Button,ActivityIndicator,Image,} from 'react-native';
+import { Text,View } from 'react-native';
+import styles from "../styles/TrackerView";
 
 export default class TrackerView extends Component {
 	render() {
@@ -13,16 +14,4 @@ export default class TrackerView extends Component {
 	}
 }
 
-const styles = StyleSheet.create({
-	description: {
-		marginBottom: 20,
-		fontSize: 18,
-		textAlign: 'center',
-		color: '#656565'
-	},
-	container: {
-		padding: 30,
-		marginTop: 65,
-		alignItems: 'center' 
-	},
-});
+
