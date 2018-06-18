@@ -3,14 +3,18 @@ import { StyleSheet, View, Text } from 'react-native';
 import styles from "../styles/Circle";
 
 export default class Circle extends Component<{}> {
+	constructor(props) {
+		super(props);
+	}
+
 	render() {
 		return (
 			<View style={styles.circle}>
 				<Text style={styles.circle_title} adjustsFontSizeToFit={true}>
-					Paused Deadlift
+					{this.props.title}
 				</Text>
 				<Text style={styles.circle_text}>
-					405	
+					{this.props.value}
 				</Text>
 			</View>
 		);
