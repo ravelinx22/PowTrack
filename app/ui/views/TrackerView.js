@@ -1,5 +1,5 @@
 import React, { Component  } from 'react';
-import { Text,View, Button, ScrollView } from 'react-native';
+import { Text,View, Button, ScrollView, TouchableOpacity } from 'react-native';
 import { getStyles } from "../styles/TrackerView";
 import Constants from "../utils/Constants";
 
@@ -27,16 +27,33 @@ export default class TrackerView extends Component {
 		}
 	}
 
+	_onSave() {
+		console.log("Save");
+	}
+
+	_onReset() {
+		console.log("Reset");
+	}
+
 	render() {
 		var displayBtnSave = (this.state[Constants.MODIFIED_FIRST_TRACKER] || this.state[Constants.MODIFIED_SECOND_TRACKER] || this.state[Constants.MODIFIED_THIRD_TRACKER]);
+
+		const styles = getStyles(displayBtnSave);
 		return (
 			<View>
-				<ScrollView contentContainerStyle={{flexGrow: 1}} style={getStyles(displayBtnSave).circles_container} >
+				<ScrollView contentContainerStyle={{flexGrow: 1}} style={styles.circles_container} >
 					<TrackerRow constant={this.state.constant} id={Constants.MODIFIED_FIRST_TRACKER} _modifiedTracker={this._modifiedTracker.bind(this)}/>
 					<TrackerRow constant={this.state.constant} id={Constants.MODIFIED_SECOND_TRACKER} _modifiedTracker={this._modifiedTracker.bind(this)}/>
 					<TrackerRow constant={this.state.constant} id={Constants.MODIFIED_THIRD_TRACKER} _modifiedTracker={this._modifiedTracker.bind(this)}/>
 				</ScrollView>
-				<Text style={getStyles(displayBtnSave).save_btn}>algo</Text>
+				<View style={styles.save_btn}>
+					<TouchableOpacity style={styles.left_container} onPress={this._onSave.bind(this)}>
+						<Text style={styles.left_text}>Save</Text>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.right_container} onPress={this._onReset.bind(this)}>
+						<Text style={styles.right_text}>Reset</Text>	
+					</TouchableOpacity>
+				</View>
 			</View>
 		);
 	}

@@ -11,7 +11,30 @@ export function getStyles(save_btn_shown) {
 			},
 			save_btn: {
 				height: "10%",
-				backgroundColor: "black"
+				flexDirection: "row",
+				backgroundColor: "orange"
+			},
+			left_container: {
+				backgroundColor: "orange",
+				flex: 1,
+				flexDirection: "column",
+				justifyContent: 'center'
+			},
+			right_container: {
+				backgroundColor: "red",
+				flex: 1,
+				flexDirection: "column",
+				justifyContent: 'center'
+			},
+			left_text: {
+				fontWeight: "bold",
+				fontSize: 18,
+				textAlign: "center"
+			},
+			right_text: {
+				fontWeight: "bold",
+				fontSize: 18,
+				textAlign: "center"
 			}
 		});
 	} else {
@@ -23,7 +46,15 @@ export function getStyles(save_btn_shown) {
 			},
 			save_btn: {
 				height: "0%",
-				backgroundColor: "black"
+				flexDirection: "row",
+			},
+			left_container: {
+			},
+			right_container: {
+			},
+			left_text: {
+			},
+			right_text: {
 			}
 		});
 	}
