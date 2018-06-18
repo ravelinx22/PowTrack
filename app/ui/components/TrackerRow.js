@@ -19,13 +19,19 @@ export default class TrackerRow extends Component<{}> {
 	_onUpPress() {
 		this.setState((prevState, props) => ({
 			value: prevState.value + this.props.constant
-		})); 
+		}), () => {
+			const modified = (this.state.value !== this.state.initValue)
+			this.props._modifiedTracker(this.props.id, modified);
+		}); 
 	}
 
 	_onDownPress() {
 		this.setState((prevState, props) => ({
 			value: prevState.value - this.props.constant
-		})); 
+		}), () => {
+			const modified = (this.state.value !== this.state.initValue)
+			this.props._modifiedTracker(this.props.id, modified);
+		}); 
 	}
 
 	render() {

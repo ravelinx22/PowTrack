@@ -1,0 +1,9 @@
+/* Constants */
+const Constants = {
+	MODIFIED_FIRST_TRACKER: "FIRST_TRACKER",
+	MODIFIED_SECOND_TRACKER: "SECOND_TRACKER",
+	MODIFIED_THIRD_TRACKER: "THIRD_TRACKER",
+	MOD_VALUE: 5
+}
+
+export default Constants;
