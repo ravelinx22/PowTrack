@@ -1,6 +1,7 @@
 import React, { Component  } from 'react';
 import { View } from 'react-native';
 import styles from "../styles/TrackerRow";
+import Constants from "../utils/Constants";
 
 import Circle from "./Circle";
 import BtnCircle from "./BtnCircle";
@@ -12,13 +13,12 @@ export default class TrackerRow extends Component<{}> {
 		this.state = {
 			initValue: 405,
 			value: 405,
-			title: "Spoto Press"
 		};
 	}
 
 	_onUpPress() {
 		this.setState((prevState, props) => ({
-			value: prevState.value + this.props.constant
+			value: prevState.value + Constants.MOD_VALUE
 		}), () => {
 			const modified = (this.state.value !== this.state.initValue)
 			this.props._modifiedTracker(this.props.id, modified);
@@ -27,7 +27,7 @@ export default class TrackerRow extends Component<{}> {
 
 	_onDownPress() {
 		this.setState((prevState, props) => ({
-			value: prevState.value - this.props.constant
+			value: prevState.value - Constants.MOD_VALUE
 		}), () => {
 			const modified = (this.state.value !== this.state.initValue)
 			this.props._modifiedTracker(this.props.id, modified);
@@ -38,7 +38,7 @@ export default class TrackerRow extends Component<{}> {
 		return (
 			<View style={styles.container}>
 				<BtnCircle icon="arrow-up" _onPressButton={this._onUpPress.bind(this)} />
-				<Circle title={this.state.title} value={this.state.value} />
+				<Circle title={this.props.data.name} value={this.props.data.value} />
 				<BtnCircle icon="arrow-down" _onPressButton={this._onDownPress.bind(this)} />
 			</View>
 		);

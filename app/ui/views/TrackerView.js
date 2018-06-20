@@ -5,12 +5,13 @@ import Constants from "../utils/Constants";
 
 import TrackerRow from "../components/TrackerRow";
 
+
+
 export default class TrackerView extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			constant: Constants.MOD_VALUE,
 			btnSaveShown: true,
 		};
 
@@ -35,6 +36,13 @@ export default class TrackerView extends Component {
 		console.log("Reset");
 	}
 
+	_renderTrackerRows() {
+		const acceptedValues = [Constants.MODIFIED_FIRST_TRACKER, Constants.MODIFIED_SECOND_TRACKER, Constants.MODIFIED_THIRD_TRACKER];
+		return this.props.data.map((d,i) => {
+			return <TrackerRow key={i} data={d} id={i < acceptedValues.length ? acceptedValues[i] : ""} _modifiedTracker={this._modifiedTracker.bind(this)}/>
+		});
+	}
+
 	render() {
 		var displayBtnSave = (this.state[Constants.MODIFIED_FIRST_TRACKER] || this.state[Constants.MODIFIED_SECOND_TRACKER] || this.state[Constants.MODIFIED_THIRD_TRACKER]);
 
@@ -42,9 +50,7 @@ export default class TrackerView extends Component {
 		return (
 			<View>
 				<ScrollView contentContainerStyle={{flexGrow: 1}} style={styles.circles_container} >
-					<TrackerRow constant={this.state.constant} id={Constants.MODIFIED_FIRST_TRACKER} _modifiedTracker={this._modifiedTracker.bind(this)}/>
-					<TrackerRow constant={this.state.constant} id={Constants.MODIFIED_SECOND_TRACKER} _modifiedTracker={this._modifiedTracker.bind(this)}/>
-					<TrackerRow constant={this.state.constant} id={Constants.MODIFIED_THIRD_TRACKER} _modifiedTracker={this._modifiedTracker.bind(this)}/>
+					{this._renderTrackerRows()}
 				</ScrollView>
 				<View style={styles.save_btn}>
 					<TouchableOpacity style={styles.left_container} onPress={this._onSave.bind(this)}>
