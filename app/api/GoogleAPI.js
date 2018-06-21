@@ -73,6 +73,29 @@ export function Sheets() {
 		});
 	}
 
+	service._append = function(data_array, spreadsheet_id) {
+		const config = {
+			valueInputOption: "USER_ENTERED",
+			insertDataOption: "INSERT_ROWS"
+		}
+		const base = SHEETS_PATH + "/" + spreadsheet_id +"/values/A1:A6:append"
+		const url = appendQueryParams(base, config);
+		const body = {
+			values: [
+				data_array
+			]
+		}
+
+		return fetch(url, {
+			method: "post",
+			headers: getHeaders(this.token()),
+			body: JSON.stringify(body)
+		}).then((res) => {
+			return res.json();
+		}).then((data) => {
+			return data;
+		});
+	}
 
 	// Getters and Setters
 	service.token = function(_) {

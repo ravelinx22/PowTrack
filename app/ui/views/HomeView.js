@@ -22,9 +22,6 @@ export default class HomeView extends Component<{}> {
 	componentDidMount() {
 		const drive = Drive().token(this.props.user.accessToken);
 		const sheets = Sheets().token(this.props.user.accessToken);
-		drive._getSpreadsheetId(Constants.BASE_SPREADSHEET_TITLE).then((ans) => {
-			console.log(ans + " LIST");
-		})
 	}
 
 	render() {
