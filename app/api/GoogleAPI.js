@@ -97,6 +97,21 @@ export function Sheets() {
 		});
 	}
 
+	service._getLastRowValues = function(spreadsheet_id) {
+		const url = SHEETS_PATH + "/" + spreadsheet_id + "/values/A2:F"
+		return fetch(url, {
+			method: "get",
+			headers: getHeaders(this.token())
+		}).then((res) => {
+			return res.json();
+		}).then((data) => {
+			if(!data || !data["values"]) return null;
+			const length = data["values"].length;
+			if(length <= 0) return null;
+			return data["values"][length-1];
+		});
+	}
+
 	// Getters and Setters
 	service.token = function(_) {
 		if(!arguments.length) return token;
