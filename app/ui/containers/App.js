@@ -17,7 +17,6 @@ export default class App extends Component<{}> {
 
 	componentDidMount() {
 		const user = GoogleSignin.currentUser();
-		console.log(user);
 		this._configureGoogle();
 	}
 
@@ -30,7 +29,6 @@ export default class App extends Component<{}> {
 				forceConsentPrompt: true
 			}).then(() => {
 				GoogleSignin.currentUserAsync().then((user) => {
-					console.log('USER', user);
 					this.setState({
 						user: user,
 						configuring: false
@@ -65,7 +63,7 @@ export default class App extends Component<{}> {
 		if(this.state.configuring) return null;
 
 		if(this.state.user) {
-			return <HomeView _onLogout={this._onLogout.bind(this)}/>
+			return <HomeView _onLogout={this._onLogout.bind(this)} user={this.state.user}/>
 		} else {
 			return <EnterView _onSignIn={this._onSignIn.bind(this)}/>
 		}

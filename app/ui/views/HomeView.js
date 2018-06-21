@@ -2,6 +2,8 @@ import React, { Component  } from 'react';
 import { View } from 'react-native';
 import { createMaterialTopTabNavigator } from "react-navigation";
 import { getFirst, getSecond } from "../utils/testData";
+import { Drive, Sheets } from "../../api/GoogleAPI.js";
+import Constants from "../utils/Constants";
 
 import TrackerView from "./TrackerView";
 import SettingsView from "../views/SettingsView";
@@ -15,6 +17,14 @@ export default class HomeView extends Component<{}> {
 		this.state = {
 			configuring: false
 		}
+	}
+
+	componentDidMount() {
+		const drive = Drive().token(this.props.user.accessToken);
+		const sheets = Sheets().token(this.props.user.accessToken);
+		drive._getSpreadsheetId(Constants.BASE_SPREADSHEET_TITLE).then((ans) => {
+			console.log(ans + " LIST");
+		})
 	}
 
 	render() {
