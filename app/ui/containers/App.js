@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { createMaterialTopTabNavigator } from "react-navigation";
 import TrackerView from "../views/TrackerView";
+import EnterView from "../views/EnterView";
 import { getFirst, getSecond } from "../utils/testData";
 
 
@@ -15,6 +16,7 @@ export default class App extends Component<{}> {
 	constructor(props) {
 		super(props);
 		this.state = {
+			signIn: false,
 		}
 	}
 
@@ -24,8 +26,9 @@ export default class App extends Component<{}> {
 			"Paused Big 3": props => <TrackerView {...props} data={getSecond()}/>,
 		});
 
+		var RenderedComp = (this.state.signIn ? TabNavigator : EnterView);
 		return (
-			<TabNavigator/>
+			<RenderedComp/>
 		);
 	}
 }
