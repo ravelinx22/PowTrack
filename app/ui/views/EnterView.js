@@ -1,5 +1,5 @@
 import React, { Component  } from 'react';
-import {StyleSheet,Text,TextInput,View,Button,ActivityIndicator,Image,} from 'react-native';
+import { View } from 'react-native';
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 
 export default class EnterView extends Component<{}> {

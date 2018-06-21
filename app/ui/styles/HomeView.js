@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
 
-/* Settings View */
+/* Home View */
 export default StyleSheet.create({
 });

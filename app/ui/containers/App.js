@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import { createMaterialTopTabNavigator } from "react-navigation";
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
-import { getFirst, getSecond } from "../utils/testData";
 import { WEB_CLIENT_ID } from 'react-native-dotenv'
 
-import TrackerView from "../views/TrackerView";
+import HomeView from "../views/HomeView";
 import EnterView from "../views/EnterView";
-import SettingsView from "../views/SettingsView";
 
 export default class App extends Component<{}> {
 
@@ -67,14 +64,8 @@ export default class App extends Component<{}> {
 	render() {
 		if(this.state.configuring) return null;
 
-		const TabNavigator = createMaterialTopTabNavigator({
-			"Big 3": props => <TrackerView {...props} data={getFirst()}/>,
-			"Paused Big 3": props => <TrackerView {...props} data={getSecond()}/>,
-			"Settings": props => <SettingsView {...props} _onLogout={this._onLogout.bind(this)}/>
-		});
-
 		if(this.state.user) {
-			return <TabNavigator/>
+			return <HomeView _onLogout={this._onLogout.bind(this)}/>
 		} else {
 			return <EnterView _onSignIn={this._onSignIn.bind(this)}/>
 		}
