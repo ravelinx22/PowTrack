@@ -16,12 +16,16 @@ export default class TrackerRow extends Component<{}> {
 
 	_onUpPress() {
 		const newValue = Number(this.props.data) + Constants.MOD_VALUE;
-		this.props._onDataChange(this.props.index, newValue);
+		if(newValue >= 0) {
+			this.props._onDataChange(this.props.index, newValue);
+		} 
 	}
 
 	_onDownPress() {
 		const newValue = Number(this.props.data) - Constants.MOD_VALUE;
-		this.props._onDataChange(this.props.index, newValue);
+		if(newValue >= 0) {
+			this.props._onDataChange(this.props.index, newValue);
+		}
 	}
 
 	render() {
