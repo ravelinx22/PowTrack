@@ -8,6 +8,7 @@ import { getTimestamp } from "../utils/Utils";
 
 import TrackerView from "./TrackerView";
 import SettingsView from "../views/SettingsView";
+import LoadingView from "../views/LoadingView";
 
 import styles from "../styles/HomeView";
 
@@ -94,8 +95,7 @@ export default class HomeView extends Component<{}> {
 
 		if(this.state.configuring) {
 			return(
-				<View>
-				</View>
+				<LoadingView/>
 			);
 		} else {
 			return <TabNavigator/>

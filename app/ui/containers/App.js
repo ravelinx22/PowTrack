@@ -4,6 +4,7 @@ import { WEB_CLIENT_ID } from 'react-native-dotenv'
 
 import HomeView from "../views/HomeView";
 import EnterView from "../views/EnterView";
+import LoadingView from "../views/LoadingView";
 
 export default class App extends Component<{}> {
 
@@ -60,7 +61,7 @@ export default class App extends Component<{}> {
 	}
 
 	render() {
-		if(this.state.configuring) return null;
+		if(this.state.configuring) return <LoadingView/>;
 
 		if(this.state.user) {
 			return <HomeView _onLogout={this._onLogout.bind(this)} user={this.state.user}/>
