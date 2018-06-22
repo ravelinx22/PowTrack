@@ -58,10 +58,26 @@ export default class HomeView extends Component<{}> {
 		})
 	}
 
+	_onSave(trackerViewTitle, newData) {
+		var newArray = this.state.data.slice();
+		if(trackerViewTitle.toString() === Constants.BIG3.toString()) {
+			for(var i = 0; i < 3; i++) {
+				newArray[i] = newData[i];
+			}
+		} else if(trackerViewTitle.toString() === Constants.PAUSEDBIG3.toString()) {
+			for(var i = 0; i < 3; i++) {
+				newArray[i+3] = newData[i];
+			}
+		}
+		this.sheets._append(newArray, this.state.spreadsheet_id).then((ans) => {
+			this.getLastRowData(this.state.spreadsheet_id);
+		});
+	}
+
 	render() {
 		const TabNavigator = createMaterialTopTabNavigator({
-			"Big 3": props => <TrackerView {...props} data={this.state.data.slice(0,3)} titles={Constants.BIG3}/>,
-			"Paused Big 3": props => <TrackerView {...props} data={this.state.data.slice(3,6)} titles={Constants.PAUSEDBIG3}/>,
+			"Big 3": props => <TrackerView {...props} data={this.state.data.slice(0,3)} titles={Constants.BIG3} _onSave={this._onSave.bind(this)}/>,
+			"Paused Big 3": props => <TrackerView {...props} data={this.state.data.slice(3,6)} titles={Constants.PAUSEDBIG3} _onSave={this._onSave.bind(this)}/>,
 			"Settings": props => <SettingsView {...props} _onLogout={this.props._onLogout}/>
 		});
 
