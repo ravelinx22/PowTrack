@@ -60,8 +60,8 @@ export default class HomeView extends Component<{}> {
 
 	render() {
 		const TabNavigator = createMaterialTopTabNavigator({
-			"Big 3": props => <TrackerView {...props} data={getFirst()}/>,
-			"Paused Big 3": props => <TrackerView {...props} data={getSecond()}/>,
+			"Big 3": props => <TrackerView {...props} data={this.state.data.slice(0,3)} titles={Constants.BIG3}/>,
+			"Paused Big 3": props => <TrackerView {...props} data={this.state.data.slice(3,6)} titles={Constants.PAUSEDBIG3}/>,
 			"Settings": props => <SettingsView {...props} _onLogout={this.props._onLogout}/>
 		});
 
@@ -71,17 +71,7 @@ export default class HomeView extends Component<{}> {
 				</View>
 			);
 		} else {
-			//			return <TabNavigator/>
-			return(
-				<View>
-					<Button
-						onPress={() => {console.log(this.state)}}
-						title="Learn More"
-						color="#841584"
-						accessibilityLabel="button"
-					/>
-				</View>
-			)
+			return <TabNavigator/>
 		}
 	}
 }

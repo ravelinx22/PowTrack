@@ -13,6 +13,7 @@ export default class TrackerView extends Component {
 		super(props);
 		this.state = {
 			btnSaveShown: true,
+			realData: [0,0,0]
 		};
 
 		this.state[Constants.MODIFIED_FIRST_TRACKER] = false;
@@ -20,12 +21,10 @@ export default class TrackerView extends Component {
 		this.state[Constants.MODIFIED_THIRD_TRACKER] = false;
 	}
 
-	_modifiedTracker(tracker, value) {
-		if(this.state[tracker] !== value) {
-			var newState = {};
-			newState[tracker]  = value;
-			this.setState(newState);
-		}
+	componentDidMount() {
+		this.setState({
+			realData: this.props.data.slice()
+		})
 	}
 
 	_onSave() {
@@ -33,18 +32,32 @@ export default class TrackerView extends Component {
 	}
 
 	_onReset() {
-		console.log("Reset");
+		this.setState({
+			realData: this.props.data.slice()
+		})
+	}
+
+	_onDataChange(index, newValue) {
+		var array = this.state.realData.slice();
+		array[index] = newValue;
+		this.setState({
+			realData: array
+		});
 	}
 
 	_renderTrackerRows() {
 		const acceptedValues = [Constants.MODIFIED_FIRST_TRACKER, Constants.MODIFIED_SECOND_TRACKER, Constants.MODIFIED_THIRD_TRACKER];
-		return this.props.data.map((d,i) => {
-			return <TrackerRow key={i} data={d} id={i < acceptedValues.length ? acceptedValues[i] : ""} _modifiedTracker={this._modifiedTracker.bind(this)}/>
+		return this.state.realData.map((d,i) => {
+			return <TrackerRow key={i}
+				data={d}
+				title={this.props.titles[i]}
+				index={i}
+				_onDataChange={this._onDataChange.bind(this)}/>
 		});
 	}
 
 	render() {
-		var displayBtnSave = (this.state[Constants.MODIFIED_FIRST_TRACKER] || this.state[Constants.MODIFIED_SECOND_TRACKER] || this.state[Constants.MODIFIED_THIRD_TRACKER]);
+		var displayBtnSave = (this.props.data.toString() !== this.state.realData.toString());
 
 		const styles = getStyles(displayBtnSave);
 		return (

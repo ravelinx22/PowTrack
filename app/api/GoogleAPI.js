@@ -108,6 +108,7 @@ export function Sheets() {
 			if(!data || !data["values"]) return null;
 			const length = data["values"].length;
 			if(length <= 0) return null;
+			if(data["values"][length-1].length <= 5) throw new Error("Las row contains less than 6 entries");
 			return data["values"][length-1];
 		});
 	}
