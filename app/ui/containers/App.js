@@ -50,7 +50,6 @@ export default class App extends Component<{}> {
 	_onLogout() {
 		GoogleSignin.signOut()
 			.then(() => {
-				console.log('out');
 				this.setState({
 					user: null
 				})

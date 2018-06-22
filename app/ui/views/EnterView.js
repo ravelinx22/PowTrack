@@ -9,7 +9,6 @@ export default class EnterView extends Component<{}> {
 	_signIn() {
 		GoogleSignin.signIn()
 			.then((user) => {
-				console.log(user);
 				this.props._onSignIn(user);
 			})
 			.catch((err) => {
