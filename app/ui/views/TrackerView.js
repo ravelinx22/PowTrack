@@ -24,7 +24,9 @@ export default class TrackerView extends Component {
 	}
 
 	_onSave() {
-		this.props._onSave(this.props.titles, this.state.realData);
+		if(!this.props.saving) {
+			this.props._onSave(this.props.titles, this.state.realData);
+		}
 	}
 
 	_onReset() {

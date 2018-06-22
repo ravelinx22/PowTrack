@@ -19,7 +19,8 @@ export default class HomeView extends Component<{}> {
 		this.state = {
 			configuring: true,
 			spreadsheet_id: null,
-			data: [0,0,0,0,0,0, getTimestamp()]
+			data: [0,0,0,0,0,0, getTimestamp()],
+			saving: false
 		}
 		this.drive = null;
 		this.sheets = null;
@@ -61,26 +62,34 @@ export default class HomeView extends Component<{}> {
 	}
 
 	_onSave(trackerViewTitle, newData) {
-		var newArray = this.state.data.slice();
-		if(trackerViewTitle.toString() === Constants.BIG3.toString()) {
-			for(var i = 0; i < 3; i++) {
-				newArray[i] = newData[i];
+		this.setState({
+			saving: true
+		}, () => {
+			console.log("entro");
+			var newArray = this.state.data.slice();
+			if(trackerViewTitle.toString() === Constants.BIG3.toString()) {
+				for(var i = 0; i < 3; i++) {
+					newArray[i] = newData[i];
+				}
+			} else if(trackerViewTitle.toString() === Constants.PAUSEDBIG3.toString()) {
+				for(var i = 0; i < 3; i++) {
+					newArray[i+3] = newData[i];
+				}
 			}
-		} else if(trackerViewTitle.toString() === Constants.PAUSEDBIG3.toString()) {
-			for(var i = 0; i < 3; i++) {
-				newArray[i+3] = newData[i];
-			}
-		}
-		newArray[6] = getTimestamp();
-		this.sheets._append(newArray, this.state.spreadsheet_id).then((ans) => {
-			this.getLastRowData(this.state.spreadsheet_id);
+			newArray[6] = getTimestamp();
+			this.sheets._append(newArray, this.state.spreadsheet_id).then((ans) => {
+				this.getLastRowData(this.state.spreadsheet_id);
+				this.setState({
+					saving: false
+				});
+			});
 		});
 	}
 
 	render() {
 		const TabNavigator = createMaterialTopTabNavigator({
-			"Big 3": props => <TrackerView {...props} data={this.state.data.slice(0,3)} titles={Constants.BIG3} _onSave={this._onSave.bind(this)}/>,
-			"Paused Big 3": props => <TrackerView {...props} data={this.state.data.slice(3,6)} titles={Constants.PAUSEDBIG3} _onSave={this._onSave.bind(this)}/>,
+			"Big 3": props => <TrackerView {...props} data={this.state.data.slice(0,3)} titles={Constants.BIG3} _onSave={this._onSave.bind(this)} saving={this.state.saving}/>,
+			"Paused Big 3": props => <TrackerView {...props} data={this.state.data.slice(3,6)} titles={Constants.PAUSEDBIG3} _onSave={this._onSave.bind(this)} saving={this.state.saving}/>,
 			"Settings": props => <SettingsView {...props} _onLogout={this.props._onLogout}/>
 		},{
 			tabBarOptions: {
