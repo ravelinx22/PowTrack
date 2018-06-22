@@ -27,7 +27,7 @@ export function Drive() {
 
 	service._getSpreadsheetId = function(name) {
 		params = { 
-			q: "name=\"" + name +"\" and mimeType=\"application/vnd.google-apps.spreadsheet\"",
+			q: "name=\"" + name +"\" and mimeType=\"application/vnd.google-apps.spreadsheet\" and trashed=false",
 		};
 		const url = appendQueryParams(DRIVE_PATH + "/files", params);
 

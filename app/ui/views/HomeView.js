@@ -1,5 +1,5 @@
 import React, { Component  } from 'react';
-import { View } from 'react-native';
+import { View, Button } from 'react-native';
 import { createMaterialTopTabNavigator } from "react-navigation";
 import { getFirst, getSecond } from "../utils/testData";
 import { Drive, Sheets } from "../../api/GoogleAPI.js";
@@ -15,13 +15,47 @@ export default class HomeView extends Component<{}> {
 	constructor(props) {
 		super(props);
 		this.state = {
-			configuring: false
+			configuring: true,
+			spreadsheet_id: null,
+			data: [0,0,0,0,0,0]
 		}
+		this.drive = null;
+		this.sheets = null;
 	}
 
 	componentDidMount() {
-		const drive = Drive().token(this.props.user.accessToken);
-		const sheets = Sheets().token(this.props.user.accessToken);
+		this.drive = Drive().token(this.props.user.accessToken);
+		this.sheets = Sheets().token(this.props.user.accessToken);
+		this.loadData();
+	}
+
+	loadData() {
+		this.drive._getSpreadsheetId(Constants.BASE_SPREADSHEET_TITLE).then((id) => {
+			if(id) {
+				this.getLastRowData(id);
+			} else {
+				this.createNewSpreadsheet();
+			}
+		});
+	}
+
+	createNewSpreadsheet() {
+		this.sheets._createBaseSpreadsheet().then((id) => {
+			this.setState({
+				spreadsheet_id: id,
+				configuring: false
+			})	
+		})
+	}
+
+	getLastRowData(id) {
+		this.sheets._getLastRowValues(id).then((data) => {
+			this.setState({
+				configuring: false,
+				spreadsheet_id: id,
+				data: data
+			})
+		})
 	}
 
 	render() {
@@ -37,7 +71,17 @@ export default class HomeView extends Component<{}> {
 				</View>
 			);
 		} else {
-			return <TabNavigator/>
+			//			return <TabNavigator/>
+			return(
+				<View>
+					<Button
+						onPress={() => {console.log(this.state)}}
+						title="Learn More"
+						color="#841584"
+						accessibilityLabel="button"
+					/>
+				</View>
+			)
 		}
 	}
 }
