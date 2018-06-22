@@ -1,4 +1,5 @@
 import Constants from "./Constants";
+import { getTimestamp } from "./Utils";
 
 /* Structure of a new spreadsheet */
 export function getBaseSpreadsheet() {
@@ -44,6 +45,11 @@ export function getBaseSpreadsheet() {
 									"userEnteredValue": {
 										"stringValue": "Spoto Press"
 									}
+								},
+								{
+									"userEnteredValue": {
+										"stringValue": "Timestamp"
+									}
 								}
 							]
 						},
@@ -77,6 +83,11 @@ export function getBaseSpreadsheet() {
 									{
 										"userEnteredValue": {
 											"numberValue": 0
+										}
+									},
+									{
+										"userEnteredValue": {
+											"stringValue": getTimestamp()
 										}
 									}
 								]

@@ -4,6 +4,7 @@ import { createMaterialTopTabNavigator } from "react-navigation";
 import { getFirst, getSecond } from "../utils/testData";
 import { Drive, Sheets } from "../../api/GoogleAPI.js";
 import Constants from "../utils/Constants";
+import { getTimestamp } from "../utils/Utils";
 
 import TrackerView from "./TrackerView";
 import SettingsView from "../views/SettingsView";
@@ -17,7 +18,7 @@ export default class HomeView extends Component<{}> {
 		this.state = {
 			configuring: true,
 			spreadsheet_id: null,
-			data: [0,0,0,0,0,0]
+			data: [0,0,0,0,0,0, getTimestamp()]
 		}
 		this.drive = null;
 		this.sheets = null;
@@ -69,6 +70,7 @@ export default class HomeView extends Component<{}> {
 				newArray[i+3] = newData[i];
 			}
 		}
+		newArray[6] = getTimestamp();
 		this.sheets._append(newArray, this.state.spreadsheet_id).then((ans) => {
 			this.getLastRowData(this.state.spreadsheet_id);
 		});

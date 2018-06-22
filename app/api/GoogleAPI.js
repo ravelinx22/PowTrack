@@ -98,7 +98,7 @@ export function Sheets() {
 	}
 
 	service._getLastRowValues = function(spreadsheet_id) {
-		const url = SHEETS_PATH + "/" + spreadsheet_id + "/values/A2:F"
+		const url = SHEETS_PATH + "/" + spreadsheet_id + "/values/A2:G"
 		return fetch(url, {
 			method: "get",
 			headers: getHeaders(this.token())
