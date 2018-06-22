@@ -8,7 +8,7 @@ export default class SettingsView extends Component<{}> {
 		return (
 			<View style={styles.container}>
 				<View style={styles.title_container}>
-					<Text style={styles.title}>PowerTrack</Text>
+					<Text style={styles.title}>PowTrack</Text>
 					<Text style={styles.copyright}>By Ravelinx</Text>
 				</View>
 				<TouchableOpacity style={styles.btnLogout} onPress={this.props._onLogout}>
