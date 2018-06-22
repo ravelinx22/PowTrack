@@ -81,6 +81,15 @@ export default class HomeView extends Component<{}> {
 			"Big 3": props => <TrackerView {...props} data={this.state.data.slice(0,3)} titles={Constants.BIG3} _onSave={this._onSave.bind(this)}/>,
 			"Paused Big 3": props => <TrackerView {...props} data={this.state.data.slice(3,6)} titles={Constants.PAUSEDBIG3} _onSave={this._onSave.bind(this)}/>,
 			"Settings": props => <SettingsView {...props} _onLogout={this.props._onLogout}/>
+		},{
+			tabBarOptions: {
+				style: {
+					backgroundColor: '#35478C',
+				},
+				indicatorStyle: {
+					backgroundColor: "#ADD5F7",
+				}
+			}
 		});
 
 		if(this.state.configuring) {

@@ -1,6 +1,8 @@
 import React, { Component  } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
+
+import styles from "../styles/EnterView";
 
 export default class EnterView extends Component<{}> {
 
@@ -19,12 +21,18 @@ export default class EnterView extends Component<{}> {
 
 	render() {
 		return (
-			<View>
+			<View style={styles.container}>
+				<Text style={styles.title}>
+					PowTrack
+				</Text>
 				<GoogleSigninButton
-					style={{width: 48, height: 48}}
-					size={GoogleSigninButton.Size.Icon}
-					color={GoogleSigninButton.Color.Dark}
+					style={{width: 312, height: 60}}
+					size={GoogleSigninButton.Size.Wide}
+					color={GoogleSigninButton.Color.Light}
 					onPress={this._signIn.bind(this)}/>
+				<Text style={styles.copyright}>
+					By Ravelinx
+				</Text>
 			</View>
 		);
 	}

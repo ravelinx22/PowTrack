@@ -5,33 +5,35 @@ export function getStyles(save_btn_shown) {
 	if(save_btn_shown) {
 		return  StyleSheet.create({
 			circles_container: {
-				backgroundColor: "blue",
+				backgroundColor: "#4E7AC7",
 				height: "90%",
 				flexDirection: 'column',
 			},
 			save_btn: {
 				height: "10%",
 				flexDirection: "row",
-				backgroundColor: "orange"
+				backgroundColor: "#16193B"
 			},
 			left_container: {
-				backgroundColor: "orange",
+				backgroundColor: "#35478C",
 				flex: 1,
 				flexDirection: "column",
 				justifyContent: 'center'
 			},
 			right_container: {
-				backgroundColor: "red",
+				backgroundColor: "#7FB2F0",
 				flex: 1,
 				flexDirection: "column",
 				justifyContent: 'center'
 			},
 			left_text: {
+				color: "white",
 				fontWeight: "bold",
 				fontSize: 18,
 				textAlign: "center"
 			},
 			right_text: {
+				color: "white",
 				fontWeight: "bold",
 				fontSize: 18,
 				textAlign: "center"
@@ -40,7 +42,7 @@ export function getStyles(save_btn_shown) {
 	} else {
 		return  StyleSheet.create({
 			circles_container: {
-				backgroundColor: "blue",
+				backgroundColor: "#4E7AC7",
 				height: "100%",
 				flexDirection: 'column',
 			},
