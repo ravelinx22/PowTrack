@@ -65,7 +65,6 @@ export default class HomeView extends Component<{}> {
 		this.setState({
 			saving: true
 		}, () => {
-			console.log("entro");
 			var newArray = this.state.data.slice();
 			if(trackerViewTitle.toString() === Constants.BIG3.toString()) {
 				for(var i = 0; i < 3; i++) {
