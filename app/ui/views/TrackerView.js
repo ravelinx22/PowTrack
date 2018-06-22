@@ -15,10 +15,6 @@ export default class TrackerView extends Component {
 			btnSaveShown: true,
 			realData: [0,0,0]
 		};
-
-		this.state[Constants.MODIFIED_FIRST_TRACKER] = false;
-		this.state[Constants.MODIFIED_SECOND_TRACKER] = false;
-		this.state[Constants.MODIFIED_THIRD_TRACKER] = false;
 	}
 
 	componentDidMount() {
@@ -46,7 +42,6 @@ export default class TrackerView extends Component {
 	}
 
 	_renderTrackerRows() {
-		const acceptedValues = [Constants.MODIFIED_FIRST_TRACKER, Constants.MODIFIED_SECOND_TRACKER, Constants.MODIFIED_THIRD_TRACKER];
 		return this.state.realData.map((d,i) => {
 			return <TrackerRow key={i}
 				data={d}
