@@ -2,6 +2,8 @@
 
 PowTrack is a mobile app developed with React Native that helps you track your own personal records for powerlifting big 3 (Squat, Bench and Deadlift) lifts and also the paused versions. This app is ideal for linear programs specially for Candito's linear program. Even do it has been developed using React Native and as a result there is an Android/iOS version, it has only been fully tested in Android. PowTrack uses Firebase to handle Google sign in and also Google drive/sheets as a database, this means that all data displayed in the app can also be modify and view in a Google Spreadsheet named POWTRACK_SPREADSHEET_FILE created by the app.
 
+PowTrack its in ![Google Play](https://play.google.com/store/apps/details?id=com.powtrack)
+
 ## Screenshots
 
 ### App
